@@ -3,6 +3,7 @@ public class AffineCipher {
 	private int a,b,aInverse,m;
 	private int[] encryptionTable = new int[26];
 	private int[] decryptionTable = new int[26];
+	private String encyptedString, decryptedString;
 	public AffineCipher(int a, int b) {
 		this.a = a;
 		this.b = b;
@@ -56,7 +57,49 @@ public class AffineCipher {
 	}
 	 
 	
-	/*public String encrypt(String line) {
-		
-	}*/
+	public String encrypt(String line) {
+		if(encryptedString != null){
+			line = line.toUpperCase();
+			String ans =""
+			int charCode;
+			for(int i = 0; i<line.length();i++){
+				charCode = line.charAt(i);
+				if(charCode==32){
+					ans += " ";
+					continue;
+				}
+				ans+= Character.toString((char)(encryptionTable[charCode-65]));
+			}
+			encryptedString = ans;
+			return ans;
+		}else{
+			return encryptedString;
+		}
+	}
+	public String encrypt(){
+		return encryptedString;
+	}
+	
+	public String decrypt(String line) {
+		if(decryptedString != null){
+			line = line.toUpperCase();
+			String ans =""
+			int charCode;
+			for(int i = 0; i<line.length();i++){
+				charCode = line.charAt(i);
+				if(charCode==32){
+					ans += " ";
+					continue;
+				}
+				ans+= Character.toString((char)(decryptionTable[charCode-65]));
+			}
+			decryptedString = ans;
+			return ans;
+		}else{
+			return decryptedString;
+		}
+	}
+	public String decrypt(){
+		return decryptedString;
+	}
 }
